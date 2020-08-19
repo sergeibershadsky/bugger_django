@@ -1,0 +1,9 @@
+django
+djangorestframework
+factory_boy
+django_dramatiq
+redis
+requests
+lxml
+psycopg2-binary
+python-dotenv
