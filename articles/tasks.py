@@ -4,7 +4,9 @@ import dramatiq
 import requests
 from lxml import html
 
-from .models import Article
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get_articles() -> List[dict]:
@@ -26,9 +28,12 @@ def fetch_page() -> str:
 
 @dramatiq.actor
 def refresh_articles():
+    from .models import Article
+    logger.info("Refresh job started")
     articles = get_articles()
     assert len(articles) == 30, "Hackernews goes wrong"
     Article.objects.all().delete()
     Article.objects.bulk_create(
         [Article(**article) for article in articles]
     )
+    logger.info("Job finished")
