@@ -116,7 +116,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
     ],
-    "PAGE_SIZE": 5
+    "PAGE_SIZE": 5,
+    "ORDERING_PARAM": "order"
 }
 
 DRAMATIQ_REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379/0")
