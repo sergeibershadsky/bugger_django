@@ -6,4 +6,4 @@ redis
 requests
 lxml
 psycopg2-binary
-apscheduler
+django-apscheduler

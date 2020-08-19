@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'articles.apps.ArticlesConfig'
+    'articles.apps.ArticlesConfig',
+    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
@@ -117,7 +118,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ],
     "PAGE_SIZE": 5,
-    "ORDERING_PARAM": "order"
+    "ORDERING_PARAM": "order",
+    "DEFAULT_PAGINATION_CLASS": 'articles.pagination.CustomPagination'
 }
 
 DRAMATIQ_REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379/0")

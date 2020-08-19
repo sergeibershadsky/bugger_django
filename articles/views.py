@@ -3,7 +3,7 @@ from rest_framework import viewsets, filters
 from .models import Article
 from .serializers import ArticleSerializer
 from .pagination import CustomPagination
-from .tasks import refresh_articles
+from .tasks import refresh_articles_job
 
 
 class ArticlesView(viewsets.ReadOnlyModelViewSet):
@@ -14,5 +14,5 @@ class ArticlesView(viewsets.ReadOnlyModelViewSet):
 
 
 def refresh_articles_view(request):
-    refresh_articles.send()
+    refresh_articles_job.send()
     return HttpResponse()

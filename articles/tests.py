@@ -6,7 +6,7 @@ from django_dramatiq.test import DramatiqTestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
 from .factories import ArticleFactory
-from .tasks import refresh_articles
+from .tasks import refresh_articles_job
 from .models import Article
 from unittest.mock import patch
 
@@ -48,7 +48,7 @@ class ScraperTestCase(DramatiqTestCase):
         with patch('articles.tasks.get_articles') as mock_get_articles:
             mock_get_articles.return_value = fake_articles()
             response = self.client.get(url)
-            # refresh_articles.send()
+            # refresh_articles_job.send()
         self.assertEqual(response.status_code, 200)
         self.broker.join("default")
         self.worker.join()
