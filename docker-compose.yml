@@ -2,8 +2,7 @@ version: '3'
 
 services:
   web:
-    build:
-      context: .
+    build: .
     volumes:
       - .:/code
     ports:
@@ -13,6 +12,9 @@ services:
       - database
     env_file:
       - .env
+    expose:
+      - 8000
+    command: gunicorn bugger_django.wsgi:application --bind 0.0.0.0:8000
 
   redis:
     image: redis
@@ -21,18 +23,16 @@ services:
       - 6379
 
   apscheduler:
-    build:
-      context: .
-      dockerfile: Dockerfile.apscheduler
+    build: .
+    command: python manage.py runapscheduler
     depends_on:
       - database
     env_file:
       - .env
 
   dramatiq:
-    build:
-      context: .
-      dockerfile: Dockerfil.dramatiq
+    build: .
+    command: python manage.py rundramatiq
     depends_on:
       - redis
       - database

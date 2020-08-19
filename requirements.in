@@ -7,3 +7,4 @@ requests
 lxml
 psycopg2-binary
 django-apscheduler
+gunicorn

@@ -15,6 +15,7 @@ djangorestframework==3.11.1  # via -r requirements.in
 dramatiq==1.9.0           # via django-dramatiq
 factory-boy==3.0.1        # via -r requirements.in
 faker==4.1.2              # via factory-boy
+gunicorn==20.0.4          # via -r requirements.in
 idna==2.10                # via requests
 lxml==4.5.2               # via -r requirements.in
 prometheus-client==0.8.0  # via dramatiq
