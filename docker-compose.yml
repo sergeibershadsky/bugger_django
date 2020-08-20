@@ -13,12 +13,14 @@ services:
     expose:
       - 8000
     command: gunicorn bugger_django.wsgi:application --bind 0.0.0.0:8000
+    restart: always
 
   redis:
     image: redis
     container_name: cache
     expose:
       - 6379
+    restart: always
 
   apscheduler:
     build: .
@@ -27,6 +29,7 @@ services:
       - database
     env_file:
       - .env
+    restart: always
 
   dramatiq:
     build: .
@@ -36,6 +39,7 @@ services:
       - database
     env_file:
       - .env
+    restart: always
 
   database:
     image: "postgres:latest"
@@ -55,6 +59,7 @@ services:
       - 80:80
     depends_on:
       - web
+    restart: always
 
 
 volumes:
