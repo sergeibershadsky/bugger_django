@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
         scheduler.add_job(
             refresh_articles,
-            trigger=CronTrigger(minute="*/1"),
+            trigger=CronTrigger.from_crontab("0 * * * *"),
             id="refresh_articles",
             max_instances=1,
             replace_existing=True,
